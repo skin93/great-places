@@ -35,7 +35,11 @@ const NewPlaceScreen = ({ navigation }) => {
           value={title}
           onChangeText={titleChangeHandler}
         />
-        <Button title='Save Place' color={Colors.primary} onPress={() => {}} />
+        <Button
+          title='Save Place'
+          color={Colors.primary}
+          onPress={savePlaceHandler}
+        />
       </View>
     </ScrollView>
   )
