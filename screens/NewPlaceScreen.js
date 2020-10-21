@@ -18,14 +18,20 @@ import Colors from '../constants/Colors'
 
 const NewPlaceScreen = ({ navigation }) => {
   const [title, setTitle] = useState('')
+  const [selectedImage, setSelectedImage] = useState()
+
   const dispatch = useDispatch()
 
   const titleChangeHandler = (text) => {
     setTitle(text)
   }
 
+  const imageTakenHandler = (imagePath) => {
+    setSelectedImage(imagePath)
+  }
+
   const savePlaceHandler = () => {
-    dispatch(placesActions.addPlace(title))
+    dispatch(placesActions.addPlace(title, selectedImage))
     navigation.goBack()
   }
 
@@ -38,7 +44,7 @@ const NewPlaceScreen = ({ navigation }) => {
           value={title}
           onChangeText={titleChangeHandler}
         />
-        <ImageSelector />
+        <ImageSelector onImageTaken={imageTakenHandler} />
         <Button
           title='Save Place'
           color={Colors.primary}
