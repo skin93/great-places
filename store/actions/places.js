@@ -15,22 +15,19 @@ export const addPlace = (title, imageUri) => async (dispatch) => {
       to: newPath,
     })
     const dbRes = await insertPlace(title, newPath, 'Dummy address', 15.6, 12.3)
-    console.log(dbRes)
+    dispatch({
+      type: ADD_PLACE,
+      payload: { id: dbRes.insertId, title, imageUri: newPath },
+    })
   } catch (err) {
     console.log(err)
     throw err
   }
-
-  dispatch({
-    type: ADD_PLACE,
-    payload: { id: dbRes.insertId, title, imageUri: newPath },
-  })
 }
 
 export const loadPlaces = () => async (dispatch) => {
   try {
     const dbRes = await fetchPlaces()
-    console.log(dbRes)
     dispatch({ type: SET_PLACES, payload: dbRes.rows._array })
   } catch (err) {
     throw err
