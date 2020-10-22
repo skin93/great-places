@@ -12,9 +12,7 @@ const MapPreview = (props) => {
 
   return (
     <TouchableOpacity
-      onPress={() => {
-        props.onPress
-      }}
+      onPress={props.onPress}
       style={{ ...styles.mapPreview, ...props.style }}
     >
       {props.location ? (
